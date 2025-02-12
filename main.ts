@@ -27,22 +27,18 @@
     Det finns flera code smells att identifiera här. Vissa är lurigare än andra.
     */
   
-  class Temp {
-    constructor(public q: string, public where: Date, public v: number) {}
+
+   
+  class TemperatureData {
+    constructor(public city: string, public date: Date, public temperature: number) {}
   }
   
-  function averageWeeklyTemperature(heights: Temp[]) {
-    let r = 0;
-  
-    for (let who = 0; who < heights.length; who++) {
-      if (heights[who].q === "Stockholm") {
-        if (heights[who].where.getTime() > Date.now() - 604800000) {
-          r += heights[who].v;
-        }
-      }
-    }
-  
-    return r / 7;
+  function averageWeeklyTemperature(records: TemperatureData[]): number {
+    const totalTemperature = records
+      .filter(record => record.city === "Stockholm" && record.date.getTime() > Date.now() - 604800000)
+      .reduce((sum, record) => sum + record.temperature, 0);
+    
+    return totalTemperature / 7;
   }
   
   /*
