@@ -4,42 +4,23 @@
   dessa hopplängder.
   */
 
-  function getLength(jumpings: number[]): number {
-    let totalNumber = 0;
-  
-    totalNumber = jumpings.reduce(
-      (jumpDistanceSoFar, currentJump) => jumpDistanceSoFar + currentJump
-    );
-  
-    return totalNumber;
+  function getJumpLength(jumpings: number[]): number {
+    return  jumpings.reduce((jumpDistanceSoFar, currentJump) => jumpDistanceSoFar + currentJump, 0);
   }
   
   /*
     2. I detta exempel har vi fokuserat på if-statements. Se om du kan göra exemplet bättre!
     */
-  
-  class Student {
-    constructor(
-      public name: string,
-      public handedInOnTime: boolean,
-      public passed: boolean
-    ) {}
-  }
-  
-  function getStudentStatus(student: Student): string {
-    student.passed =
-      student.name == "Sebastian"
-        ? student.handedInOnTime
-          ? true
-          : false
-        : false;
-  
-    if (student.passed) {
-      return "VG";
-    } else {
-      return "IG";
+    class Student {
+      constructor(
+        public name: string,
+        public handedInOnTime: boolean
+      ) {}
     }
-  }
+ 
+    function getStudentStatus(student: Student): string {
+      return student.name === "Sebastian" && student.handedInOnTime ? "VG" : "IG";
+    }
   
   /*
     3. Variabelnamn är viktiga. Kika igenom följande kod och gör om och rätt.
