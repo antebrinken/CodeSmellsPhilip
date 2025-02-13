@@ -110,29 +110,25 @@
     5. Följande funktion kommer presentera studenter. Men det finns ett antal saker som 
     går att göra betydligt bättre. Gör om så många som du kan hitta!
     */
+  
+
   function presentStudents(students: Student[]) {
-    for (const student of students) {
-      if (student.handedInOnTime) {
-        let container = document.createElement("div");
-        let checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.checked = true;
+    const passedList = document.querySelector("ul#passedstudents");
+    const failedList = document.querySelector("ul#failedstudents");
   
-        container.appendChild(checkbox);
-        let listOfStudents = document.querySelector("ul#passedstudents");
-        listOfStudents?.appendChild(container);
-      } else {
-        let container = document.createElement("div");
-        let checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.checked = false;
+    students.forEach(student => {
+      const container = document.createElement("div");
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = student.handedInOnTime;
   
-        container.appendChild(checkbox);
-        let listOfStudents = document.querySelector("ul#failedstudents");
-        listOfStudents?.appendChild(container);
-      }
-    }
+      container.appendChild(checkbox);
+  
+      const targetList = student.handedInOnTime ? passedList : failedList;
+      targetList?.appendChild(container);
+    });
   }
+  
   
   /*
     6. Skriv en funktion som skall slå ihop följande texter på ett bra sätt:
