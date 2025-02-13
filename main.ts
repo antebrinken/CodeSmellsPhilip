@@ -46,28 +46,27 @@
     Se om du kan göra det bättre. Inte bara presentationen räknas, även strukturer.
     */
   
-  function showProduct(
-    name: string,
-    price: number,
-    amount: number,
-    description: string,
-    image: string,
-    parent: HTMLElement
-  ) {
-    let container = document.createElement("div");
-    let title = document.createElement("h4");
-    let pris = document.createElement("strong");
-    let imageTag = document.createElement("img");
   
-    title.innerHTML = name;
-    pris.innerHTML = price.toString();
-    imageTag.src = image;
-  
-    container.appendChild(title);
-    container.appendChild(imageTag);
-    container.appendChild(pris);
-    parent.appendChild(container);
+
+  interface Product {
+    name: string;
+    price: number;
+    amount: number;
+    description: string;
+    image: string;
   }
+  
+  function showProduct(product: Product, parent: HTMLElement) {
+    parent.innerHTML += `
+      <div>
+        <h4>${product.name}</h4>
+        <img src="${product.image}" alt="${product.name}">
+        <strong>Pris: ${product.price} kr</strong>
+        <p>${product.description}</p>
+        <p>I lager: ${product.amount} st</p>
+      </div>`;
+  }
+  
   
   /*
     5. Följande funktion kommer presentera studenter. Men det finns ett antal saker som 
