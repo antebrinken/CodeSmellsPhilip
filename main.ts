@@ -66,7 +66,38 @@
         <p>I lager: ${product.amount} st</p>
       </div>`;
   }
-  
+
+  interface Product {
+    name: string,
+    price: number,
+    amount: number,
+    description: string,
+    image: string,
+  }
+  function showProduct(product:Product, parent: HTMLElement) {
+    const {name, price, image, amount, description} = product;
+
+    const container = document.createElement("div");
+    container.classList.add("product");
+    const title = document.createElement("h4");
+    title.textContent = name;
+    const pricetag = document.createElement("strong");
+    pricetag.textContent = ${price} SEK;
+    const stockInfo = document.createElement("p");
+    stockInfo.textContent = amount > 0 ? In stock: ${amount} : "Out of stock";
+    stockInfo.classList.add(amount > 0 ? "in-stock" : "out-of-stock");
+    const descTag = document.createElement("p");
+    descTag.textContent = description;
+    const imageTag = document.createElement("img");
+    imageTag.src = image;
+    imageTag.alt = image of ${name};
+
+    container.append(title, imageTag, pricetag, stockInfo, descTag);
+    parent.appendChild(container);
+
+  }
+  /* Alternativ kod, den översta är kort och följer KISS och DRY metoden medan den andra är en
+   bättre fungerande kod som fungerar bättre */
   
   /*
     5. Följande funktion kommer presentera studenter. Men det finns ett antal saker som 
